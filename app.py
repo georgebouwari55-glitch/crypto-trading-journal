@@ -19,13 +19,13 @@ if 'journal_data' not in st.session_state:
 
 # --- סרגל צד: הזנת עסקה חדשה ---
 with st.sidebar:
-    st.header("📏 הזנת עסקה חדשה")
+    st.header("📝 הזנת עסקה חדשה")
     
     with st.form("trade_form", clear_on_submit=True):
         date_val = st.date_input("תאריך", datetime.date.today())
         pair = st.text_input("צמד (למשל BTC/USDT)", value="BTC/USDT").upper()
         direction = st.selectbox("כיוון", ["LONG", "SHORT"])
-        strategy = st.selectbox("אסטרטטטיטה", ["Breakout", "Reversal", "Trend Follow", "Scalp"])
+        strategy = st.selectbox("אסטרטגיה", ["Breakout", "Reversal", "Trend Follow", "Scalp"])
         
         col1, col2 = st.columns(2)
         with col1:
@@ -95,9 +95,9 @@ if not df.empty:
     m1.metric("💰 רווח נקי כולל", f"${total_pnl:,.2f}")
     m2.metric("🎯 אחוז הצלחה (Win Rate)", f"{win_rate:.1f}%")
     m3.metric("⚖️ ממוצע R-Multiple", f"{avg_r:.2f}R")
-    m4.metric("📏 סה"כ עסקאות", len(df))
+    m4.metric("📝 סה״כ עסקאות", len(df))
     
-    st.subheader("📊 גרף צמיחת תיק (Equity Curve)")
+    st.subheader("📈 גרף צמיחת תיק (Equity Curve)")
     df['Cumulative PnL'] = df['PnL ($)'].cumsum()
     st.line_chart(df['Cumulative PnL'])
     
@@ -120,4 +120,4 @@ if not df.empty:
         mime="text/csv"
     )
 else:
-    st.info("טו התחל להזין עסקאות בסרגל הצד כדי לראות נתונים.")
+    st.info("👈 התחל להזין עסקאות בסרגל הצד כדי לראות נתונים.")
